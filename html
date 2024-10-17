@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <style>
+        body {
+            background-color: #e0e0e0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            font-family: sans-serif;
+        }
+
+        .calculator {
+            background-color: #222;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            width: 300px;
+        }
+
+        .display {
+            background-color: #333;
+            color: #fff;
+            font-size: 24px;
+            padding: 10px;
+            text-align: right;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+
+        .buttons {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-gap: 10px;
+        }
+
+        button {
+            background-color: #444;
+            color: #fff;
+            border: none;
+            padding: 15px;
+            font-size: 18px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #555;
+        }
+
+        .operator {
+            background-color: #555;
+        }
+
+        .operator:hover {
+            background-color: #666;
+        }
+
+        .equal {
+            background-color: #ff5722;
+        }
+
+        .equal:hover {
+            background-color: #ff6f41;
+        }
+
+        .all-clear {
+            background-color: #f44336;
+        }
+
+        .all-clear:hover {
+            background-color: #ff5f52;
+        }
+    </style>
+</head>
+<body>
+    <div class="calculator">
+        <div class="display" id="display"></div>
+        <div class="buttons">
+            <button class="all-clear" value="AC">AC</button>
+            <button value="7">7</button>
+            <button value="8">8</button>
+            <button value="9">9</button>
+            <button class="operator" value="/">/</button>
+            <button value="4">4</button>
+            <button value="5">5</button>
+            <button value="6">6</button>
+            <button class="operator" value="*">*</button>
+            <button value="1">1</button>
+            <button value="2">2</button>
+            <button value="3">3</button>
+            <button class="operator" value="-">-</button>
+            <button value="0">0</button>
+            <button value=".">.</button>
+            <button class="equal" value="=">=</button>
+            <button class="operator" value="+">+</button>
+        </div>
+    </div>
+
+    <script>
+        let display = document.getElementById('display');
+        let buttons = document.querySelectorAll('button');
+
+        buttons.forEach(button => {
+            button.addEventListener('click', () => {
+                let value = button.value;
+                
+                if (value === 'AC') {
+                    display.textContent = '';  // Clears the display when AC is pressed
+                } else if (value === '=') {
+                    try {
+                        let result = eval(display.textContent);
+                        display.textContent = result;
+                    } catch (error) {
+                        display.textContent = 'Error';
+                    }
+                } else {
+                    display.textContent += value;
+                }
+            });
+        });
+    </script>
+</body>
+</html>
